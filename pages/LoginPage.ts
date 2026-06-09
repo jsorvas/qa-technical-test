@@ -5,6 +5,7 @@ export class LoginPage {
   private usernameField = '[data-test="username"]';
   private passwordField = '[data-test="password"]';
   private loginButton = '[data-test="login-button"]';
+  private errorMessage = '[data-test="error"]';
 
   constructor(page: Page) {
     this.page = page;
@@ -22,5 +23,9 @@ export class LoginPage {
 
   async isLoggedIn(): Promise<boolean> {
     return this.page.url().includes("inventory.html");
+  }
+
+  async getErrorMessage(): Promise<string> {
+    return await this.page.locator(this.errorMessage).innerText();
   }
 }
